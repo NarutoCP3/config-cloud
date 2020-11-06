@@ -1,0 +1,37 @@
+server:
+    port: 8080
+    servlet:
+        context-path: /bm
+
+spring:
+    # 数据源
+    datasource:
+        url: jdbc:mysql://192.168.241.66:3306/demo?useUnicode=true&characterEncoding=UTF-8
+        driver-class-name: com.mysql.jdbc.Driver
+        username: admin
+        password: admin
+        # 数据库连接池
+        type: com.alibaba.druid.pool.DruidDataSource
+        
+    thymeleaf:
+        # 关闭缓存
+        cache: false
+        # 去除HTML5的严格校验
+        mode: LEGACYHTML5
+        # 指定thymeleaf的模板路径
+        prefix: classpath:/templates/pages/
+        encoding: UTF-8
+        
+    redis:
+        timeout: 6000ms #超时时间
+        database: 10 #初始化数据库的数量
+        host: 192.168.241.66 #单实例的redis(只有用一个redis)
+        password: 111111
+        port: 6379
+        #实现redis客户端的，boot1.x版本用的是jedis，lettuce线程安全
+        lettuce:
+            pool:
+                max-active: 1000 #连接池最大连接数（负数表示没有限制）
+                max-idle: 10 #连接池中最大空闲连接
+                min-idle: 3 #连接池中最小空闲连接
+                max-wait: -1 #连接池阻塞最大等待时间(负数表示阻塞不等待)
